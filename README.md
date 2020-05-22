@@ -1,2 +1,4 @@
-# summary_works
-Examples of my work for a summary
+# Resume works of Anton Yurievich
+
+Hello!
+This resume contains examples of my skills
