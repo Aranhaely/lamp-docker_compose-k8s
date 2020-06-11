@@ -1,4 +1,3 @@
-# Resume works of Anton Yurievich
+# LAMP в Docker Compose и K8s
 
-Hello!
-This resume contains examples of my skills
+Данный проект представляет собой вариант локальной реализации архитектуры LAMP + Php-Fpm + Nginx посредством Docker Compose и K8s.
