@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  db:
+    image: mysql:8.0
+    networks:
+      - lamp
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+
+  phpfpm:
+    image: php:7.4-fpm-alpine
+    networks:
+      - lamp
+    restart: always
+    volumes:
+      - ./app/:/app
+
+  nginx:
+    image: bitnami/nginx:1.18-debian-10
+    depends_on:
+      - phpfpm
+    networks:
+      - lamp
+    ports:
+      - 8080:8080
+    #  - 4443:443
+    restart: always
+    volumes:
+      - ./nginx.conf:/opt/bitnami/nginx/conf/server_blocks/yourapp.conf
+  
+  adminer:
+    image: adminer:4.7.7-standalone
+    networks:
+      - lamp
+    #depends_on:
+    #  - mysql
+    restart: always
+    ports:
+      - 8081:8080
+
+networks:
+  lamp:
+    driver: bridge
